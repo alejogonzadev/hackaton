@@ -51,7 +51,7 @@ class Techpartner():
 
     @crew
     def crew(self) -> Crew:
-        """Creates the Techpartner crew"""
+        """CRea el crew de nuestro proyecto"""
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
 
