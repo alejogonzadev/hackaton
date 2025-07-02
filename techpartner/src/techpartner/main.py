@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 import sys
 import warnings
+import os
+from dotenv import load_dotenv
+
+#Cargar las variables de entorno
+load_dotenv()
+
+#Obtener las API keys desde el entorno
+openai_api_key = os.getenv("OPENAI_API_KEY")
+serperdev_api = os.getenv("SERPERDEV_API")
 
 from datetime import datetime
 
