@@ -35,6 +35,7 @@ def run():
     inputs = {
         'topic': 'AI Developer',
         'city': 'Medellin',
+        'topic': 'AI LLMs',
         'current_year': str(datetime.now().year)
     }
     

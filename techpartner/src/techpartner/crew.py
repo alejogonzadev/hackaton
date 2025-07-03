@@ -5,7 +5,7 @@ from typing import List
 from crewai_tools import SerperDevTool, WebsiteSearchTool, ScrapeWebsiteTool
 
 
-#Aquí se hace la creación de la crew
+
 @CrewBase
 class Techpartner():
     """Techpartner crew"""
@@ -111,8 +111,9 @@ class Techpartner():
         """Genera un reporte final con todos los hallazgos"""
         return Task(
             config=self.tasks_config['generate_final_tech_report'], # type: ignore[index]
-            output_file='report.md'
+
         )
+
 
     @crew
     def crew(self) -> Crew:
@@ -126,4 +127,5 @@ class Techpartner():
             
         )
     
-    
+
+        
