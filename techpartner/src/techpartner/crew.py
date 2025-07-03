@@ -9,11 +9,9 @@ from crewai_tools import SerperDevTool, WebsiteSearchTool, ScrapeWebsiteTool
 
 llm = LLM(
     model="ollama/llama3:latest",
-    base_url="http://localhost:11434"
+    base_url="http://localhost:11434",
+    request_timeout=180.0
 )
-
-
-
 
 @CrewBase
 class Techpartner():
