@@ -11,6 +11,12 @@ load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 serperdev_api = os.getenv("SERPERDEV_API")
 
+#Importar las tools necesarias para los agentes
+from crewai_tools import WebsiteSearchTool
+
+
+websiteSearch =WebsiteSearchTool()
+
 from datetime import datetime
 
 from techpartner.crew import Techpartner
@@ -27,7 +33,8 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs',
+        'topic': 'AI Developer',
+        'city': 'Medellin',
         'current_year': str(datetime.now().year)
     }
     
@@ -42,7 +49,8 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        "topic": "AI LLMs",
+        "topic": "AI Developer",
+        'city': 'Medellin',
         'current_year': str(datetime.now().year)
     }
     try:
@@ -66,7 +74,8 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
-        "topic": "AI LLMs",
+        "topic": "AI Developer",
+        'city': 'Medellin',
         "current_year": str(datetime.now().year)
     }
     
@@ -75,3 +84,7 @@ def test():
 
     except Exception as e:
         raise Exception(f"An error occurred while testing the crew: {e}")
+
+
+if __name__ == "__main__":
+    run()  # Llama directamente a la ejecución principal

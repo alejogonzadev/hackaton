@@ -2,10 +2,10 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
-# If you want to run a snippet of code before or after the crew starts,
-# you can use the @before_kickoff and @after_kickoff decorators
-# https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
+from crewai_tools import SerperDevTool, WebsiteSearchTool, ScrapeWebsiteTool
 
+
+#Aquí se hace la creación de la crew
 @CrewBase
 class Techpartner():
     """Techpartner crew"""
@@ -13,52 +13,117 @@ class Techpartner():
     agents: List[BaseAgent]
     tasks: List[Task]
 
-    # Learn more about YAML configuration files here:
-    # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
-    # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
+#=================================Agents======================================#
+
+    @agent
+    def tech_talent_diagnostics_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['tech_talent_diagnostics_agent'], # type: ignore[index]
+            tools = [SerperDevTool()],
+            verbose=True,
+        )
+
+    @agent
+    def education_content_curation_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['education_content_curation_agent'], # type: ignore[index]
+            tools = [WebsiteSearchTool(), SerperDevTool()],
+            verbose=True
+        )
     
-    # If you would like to add tools to your agents, you can learn more about it here:
-    # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def researcher(self) -> Agent:
+    def talent_opportunity_connector_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher'], # type: ignore[index]
+            config=self.agents_config['talent_opportunity_connector_agent'], # type: ignore[index]
+            tools = [WebsiteSearchTool(), SerperDevTool()],
             verbose=True
         )
-
+    
     @agent
-    def reporting_analyst(self) -> Agent:
+    def ai_advisor_for_position_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['reporting_analyst'], # type: ignore[index]
+            config=self.agents_config['ai_advisor_for_position_agent'], # type: ignore[index]
+            tools = [WebsiteSearchTool(), SerperDevTool()],
             verbose=True
         )
+    
+    @agent
+    def ai_business_value_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['ai_business_value_agent'], # type: ignore[index]
+            tools = [WebsiteSearchTool(), SerperDevTool()],
+            verbose=True
+        )
+    
+    @agent
+    def final_report_generator_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config['final_report_generator_agent'], # type: ignore[index]
+            tools = [WebsiteSearchTool(), SerperDevTool()],
+            verbose=True
+        )
+    
 
-    # To learn more about structured task outputs,
-    # task dependencies, and task callbacks, check out the documentation:
-    # https://docs.crewai.com/concepts/tasks#overview-of-a-task
+    
+
+#=================================Tasks======================================#
     @task
-    def research_task(self) -> Task:
+    def identify_relevant_tech_positions(self) -> Task:
+        """Encuentra posiciones en demanda"""
         return Task(
-            config=self.tasks_config['research_task'], # type: ignore[index]
+            config=self.tasks_config['identify_relevant_tech_positions'], # type: ignore[index]
         )
 
     @task
-    def reporting_task(self) -> Task:
+    def curate_learning_path(self) -> Task:
+        """Genera ruta de aprendizaje"""
         return Task(
-            config=self.tasks_config['reporting_task'], # type: ignore[index]
+            config=self.tasks_config['curate_learning_path'], # type: ignore[index]
+            
+        )
+    
+    @task
+    def connector_task(self) -> Task:
+        """Busca vacantes y empresas"""
+        return Task(
+            config=self.tasks_config['connector_task'], # type: ignore[index]
+            
+        )
+    
+    @task
+    def ai_advisor_task(self) -> Task:
+        """Muestra casos de uso para esta posición"""
+        return Task(
+            config=self.tasks_config['ai_advisor_task'], # type: ignore[index]
+            
+        )
+    
+    @task
+    def ai_impact_on_company_from_topic(self) -> Task:
+        """Muestra el impacto de la adopción de la ia para esta posición"""
+        return Task(
+            config=self.tasks_config['ai_impact_on_company_from_topic'], # type: ignore[index]
+            
+        )
+    
+    @task
+    def generate_final_tech_report(self) -> Task:
+        """Genera un reporte final con todos los hallazgos"""
+        return Task(
+            config=self.tasks_config['generate_final_tech_report'], # type: ignore[index]
             output_file='report.md'
         )
 
     @crew
     def crew(self) -> Crew:
-        """CRea el crew de nuestro proyecto"""
-        # To learn how to add knowledge sources to your crew, check out the documentation:
-        # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
+        """Crea el crew de nuestro proyecto"""
 
         return Crew(
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator
             process=Process.sequential,
             verbose=True,
-            # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+            
         )
+    
+    

@@ -1,4 +1,19 @@
-User name is John Doe.
-User is an AI Engineer.
-User is interested in AI Agents.
-User is based in San Francisco, California.
+The user is actively looking to enter the technology industry and is exploring job opportunities related to the role of {topic}.
+
+The user wants to understand:
+- The current demand for professionals in the field of {topic}, both in Colombia and in remote positions.
+- What companies are hiring for this role and what skills they require.
+- Which technologies, tools, and soft skills are essential to succeed in this career path.
+
+The user is looking for accessible learning resources to build the required skills, ideally:
+- In Spanish or with Spanish subtitles.
+- Free or low-cost.
+- With practical, hands-on formats (e.g., video tutorials, project-based courses).
+
+The user values content and job recommendations that are:
+- Adapted to the Colombian context.
+- Based on real labor market data.
+- Focused on short- and medium-term career transitions.
+
+The user is also interested in understanding how the use of AI tools can enhance their performance in this role, and how becoming proficient in AI-supported workflows may benefit both themselves and the companies they work for.
+ 

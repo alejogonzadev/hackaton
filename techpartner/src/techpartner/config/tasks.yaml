@@ -1,43 +1,66 @@
-lead_strategist_task:
-  description: >
-      Review and integrate all agent outputs (diagnostics, education paths, talent matching, AI business use cases, and impact projections).
-       Develop a comprehensive policy proposal or scalable pilot program.
-  expected_output: >
-        Strategic document including: goals, phases, KPIs, responsible actors, timeline and budget.
-        Pitch deck or executive summary for stakeholders.
-  agent: lead_strategist
+#==========================Tarea de identificación de talento===================================#
 
-tech_diag_task:
+identify_relevant_tech_positions:
   description: >
-    Research job portals, government reports and education statistics to identify the top 3 tech roles currently in demand in Colombia. 
-    Analyze the required technical and soft skills for each role.
-    Compare these with current educational offerings to identify gaps.
+    Using available online data sources and your access to tools like SerperDev and WebsiteSearchTool,
+    investigate the most relevant and in-demand job roles in {city} related to the topic "{topic}". 
+    Focus your research on job boards, government portals, and technology reports. 
+    Extract titles, required skills, and frequency of listings to determine the top 5 roles.
+
   expected_output: >
-    List or table with the top 3 most in-demand tech roles.
-    Comparative table of technical and soft skills required per profile.
-    Gap analysis between current training offerings and market needs.
+    A structured Markdown or PDF report that includes:
+    1. A ranked list of the top 5 most relevant tech job positions in {city} related to "{topic}".
+    2. A short description for each role.
+    3. Required technical and soft skills for each.
+    4. Any evident skill gaps that could be addressed by education or training programs.
+    5. Final recommendations for improving talent development in this area.
+
   agent: tech_talent_diagnostics_agent
 
-education_agent_task:
+#========================Tarea de generacion de rutas educativas y material de aprendizaje ==============================#
+
+curate_learning_path:
   description: >
-    Based on the roles and skill gaps provided by the diagnostics agent, design adaptive learning pathways using accessible online resources. 
-    Tailor the content to the Colombian context.
+    Based on the diagnostic report for the role "{topic}" in {city}, design a structured and adaptive learning path.
+    Search for free or low-cost courses, books, videos, and practical tutorials that help someone develop the key skills required for the role.
+    Prioritize content in Spanish or with Spanish subtitles if available, and that is accessible to learners in Colombia.
+
   expected_output: >
-      Learning paths (one per profile) with suggested modules.
-      Table showing estimated duration per module and difficulty level.
-      Links to recommended platforms or content.
+    A structured learning path in Markdown format including:
+    1. A brief summary of the role and the skills needed.
+    2. A table or list of:
+        - Courses (MOOCs, platforms like Coursera, edX, Platzi)
+        - Books (free PDFs or recommended reads)
+        - YouTube videos or playlists
+        - Other online tutorials or websites
+    3. A weekly or modular roadmap organizing the resources by sequence (e.g., Beginner → Intermediate → Advanced)
+    4. Bonus: local or Latin American learning initiatives or communities if applicable.
+
   agent: education_content_curation_agent
 
+#=========================Tarea de generacion de conexiones con empresas y vacantes relacionadas====================#
 connector_task:
   description: >
-      Identify tech companies, startups, and hiring platforms interested in the identified roles. 
-      Design a mechanism to match trained individuals with job opportunities.
+    Using the information provided by the diagnostics and the learning path,
+    search for current job openings in {city} related to the role "{topic}".
+    Match the required skills in the job postings with those covered in the learning path.
+    Prioritize jobs from reputable companies and platforms accessible to Colombian candidates.
+
   expected_output: >
-        Talent connection strategy (manual or automated matching).
-        Table with suggested platforms and potential employer partners.
-        Examples of real job openings related to the prioritized profiles.
+    A job intelligence report in Markdown format including:
+    1. A list of 5–10 current job offers for the role "{topic}" in {city}, including:
+       - Job title
+       - Company
+       - Brief description
+       - Required skills
+       - Application link
+    2. A table matching required job skills with those covered in the proposed learning path.
+    3. Observations about potential skill gaps or alignment.
+    4. Recommendations for the candidate to improve employability chances based on observed gaps or trends.
+    
   agent: talent_opportunity_connector_agent
 
+#========================= Tarea de generacion de conexiones con empresas y vacantes relacionadas =======================#
 ai_advisor_task:
   description: >
       Evaluate AI readiness in Colombian SMEs. Identify business processes suitable for AI (e.g., customer service, sales analytics). 
@@ -48,11 +71,47 @@ ai_advisor_task:
         Step-by-step implementation guides for each use case.
   agent: ai_advisor_for_companies_agent
 
-impact_agent_task:
+
+#====================================Tarea de evaluación de impacto de adopción de IA====================#
+ai_impact_on_company_from_topic:
   description: >
-        Using outputs from all other agents, define KPIs and forecast potential impacts (jobs created, productivity increase, upskilled individuals, etc.).
-        Benchmark with similar initiatives globally.
+    Write a concise report showing how having professionals trained in "{topic}" who use AI tools in their daily tasks
+    can positively impact the business.
+    Use examples and metrics where possible to illustrate the business value of AI adoption in this role.
+
   expected_output: >
-        Impact report including: metrics, projections, scalability analysis.
-        ROI estimation and long-term benefits.
-  agent: impact_evaluator_agent
+    A brief executive-style report in Markdown format that includes:
+    1. A summary of the business functions impacted by the "{topic}" role.
+    2. 3–4 ways AI adoption in this role can improve business outcomes (e.g., speed, quality, innovation, cost).
+    3. Specific examples or scenarios relevant to Colombian or Latin American SMEs.
+    4. A call-to-action for companies to train, hire, or upskill professionals in this area with AI capabilities.
+
+  agent: ai_business_value_agent
+
+#========================================Tarea de generacion de reporte final========================================#
+generate_final_tech_report:
+  description: >
+    Create a final comprehensive career report for the target role "{topic}" in {city}.
+    Integrate and summarize the outputs from all previous agents:
+    - In-demand tech positions
+    - Learning path and educational resources
+    - Relevant job offers and companies
+    - AI use cases for the role
+    - Business value of AI adoption in this position
+
+  expected_output: >
+    A complete, well-formatted Markdown report (.md) including:
+    1. **Executive Summary** (1 paragraph)
+    2. **Section 1: In-Demand Roles in {city} for {topic}**
+       - List and brief analysis from tech_talent_diagnostics_agent
+    3. **Section 2: Personalized Learning Path**
+       - Curated resources (courses, books, videos) and roadmap
+    4. **Section 3: Job Opportunities**
+       - Top job offers, companies, and skill alignment
+    5. **Section 4: AI in Your Role**
+       - Use cases and tools for personal productivity
+    6. **Section 5: Business Value of AI Adoption**
+       - Strategic impact of training professionals in {topic} with AI skills
+    7. **Recommendations & Next Steps**
+
+  agent: final_report_generator_agent
