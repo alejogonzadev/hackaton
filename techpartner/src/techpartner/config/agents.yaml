@@ -73,7 +73,7 @@ ai_advisor_for_position_agent:
   context: >
     tech_talent_diagnostics_agent, education_content_curation_agent
 
-#===============================================Agente evaluador de impactos=======================================================#
+#===============================================Agente evaluador de impacto de implementacion=======================================================#
 ai_business_value_agent:
   role: >
     Strategic AI Value Advisor for Enterprises
