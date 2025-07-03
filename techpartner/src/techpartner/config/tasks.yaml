@@ -60,16 +60,15 @@ connector_task:
     
   agent: talent_opportunity_connector_agent
 
-#========================= Tarea de generacion de conexiones con empresas y vacantes relacionadas =======================#
+#========================= Tarea de implementacion de IA en el rol =======================#
 ai_advisor_task:
   description: >
-      Evaluate AI readiness in Colombian SMEs. Identify business processes suitable for AI (e.g., customer service, sales analytics). 
-      Recommend user-friendly tools for implementation.
+       Analyze the responsibilities and workflows of the "{topic}" role to identify repetitive, data-heavy, or decision-based tasks that could be improved using AI tools or automation.
   expected_output: >
         Realistic automation proposals for Colombian SMEs.
         Table of accessible tools for each use case (e.g., ChatGPT, Zapier).
         Step-by-step implementation guides for each use case.
-  agent: ai_advisor_for_companies_agent
+  agent: ai_advisor_for_position_agent
 
 
 #====================================Tarea de evaluación de impacto de adopción de IA====================#
@@ -102,12 +101,12 @@ generate_final_tech_report:
   expected_output: >
     A complete, well-formatted Markdown report (.md) including:
     1. **Executive Summary** (1 paragraph)
-    2. **Section 1: In-Demand Roles in {city} for {topic}**
+    2. **Section 1: In-Demand Roles in {city} for {topic} with links associated**
        - List and brief analysis from tech_talent_diagnostics_agent
     3. **Section 2: Personalized Learning Path**
        - Curated resources (courses, books, videos) and roadmap
     4. **Section 3: Job Opportunities**
-       - Top job offers, companies, and skill alignment
+       - Top job offers(with links asocciated), companies, and skill alignment
     5. **Section 4: AI in Your Role**
        - Use cases and tools for personal productivity
     6. **Section 5: Business Value of AI Adoption**

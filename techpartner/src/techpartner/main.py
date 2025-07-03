@@ -4,11 +4,11 @@ import warnings
 import os
 from dotenv import load_dotenv
 
+
+
 #Cargar las variables de entorno
 load_dotenv()
 
-#Obtener las API keys desde el entorno
-openai_api_key = os.getenv("OPENAI_API_KEY")
 serperdev_api = os.getenv("SERPERDEV_API")
 
 #Importar las tools necesarias para los agentes
@@ -33,9 +33,8 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI Developer',
+        'topic': 'Full Stack Developer',
         'city': 'Medellin',
-        'topic': 'AI LLMs',
         'current_year': str(datetime.now().year)
     }
     
@@ -50,7 +49,7 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
-        "topic": "AI Developer",
+        "topic": "Full Stack Developer",
         'city': 'Medellin',
         'current_year': str(datetime.now().year)
     }
